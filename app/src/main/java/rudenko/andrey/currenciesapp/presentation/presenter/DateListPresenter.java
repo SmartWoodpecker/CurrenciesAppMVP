@@ -17,6 +17,9 @@ public class DateListPresenter {
     private DateModel dateModel = new DateModelImpl();
     private DateListActivity view;
 
+    public DateListPresenter () {
+
+    }
 
     public void attachView(DateListActivity dateDetailsActivity) {
         view = dateDetailsActivity;
@@ -26,7 +29,7 @@ public class DateListPresenter {
         view = null;
     }
 
-    public void viewIsReady() {
+    public void firstInitialPresenter() {
         view.createScrollListener();
         getDate(0);
     }

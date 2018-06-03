@@ -17,7 +17,10 @@ public class DateDetailsPresenter {
     private String year;
     private String day;
 
-    public DateDetailsPresenter(String year, String month, String day) {
+    public DateDetailsPresenter() {
+    }
+
+    public void initDate (String year, String month, String day) {
         this.year = year;
         this.month = month;
         this.day = day;
@@ -31,7 +34,7 @@ public class DateDetailsPresenter {
         view = null;
     }
 
-    public void viewIsReady() {
+    public void firstInitialPresenter() {
         getCurrency();
     }
 

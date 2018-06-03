@@ -16,7 +16,6 @@ import rudenko.andrey.currenciesapp.CurrenciesApp;
 import rudenko.andrey.currenciesapp.R;
 import rudenko.andrey.currenciesapp.common.EndlessRecyclerViewScrollListener;
 import rudenko.andrey.currenciesapp.common.CurrencyAdapter;
-import rudenko.andrey.currenciesapp.common.PresenterManager;
 import rudenko.andrey.currenciesapp.presentation.presenter.DateListPresenter;
 
 /**
@@ -29,22 +28,31 @@ public class DateListActivity extends AppCompatActivity implements DateListView 
     DateListPresenter presenter;
     RecyclerView rv_currency_list;
     CurrencyAdapter adapter;
-    CurrenciesApp app = ((CurrenciesApp) getApplicationContext());
+    CurrenciesApp app;
+    Boolean isConfigChange = false;
     LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_list);
+        app = (CurrenciesApp) getApplicationContext();
         initializeToolbar();
         initializeRecycler();
         initPresenter();
     }
 
-    public void initPresenter()  {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("changeConfig", true);
+
+    }
+
+    public void initPresenter() {
         presenter = app.getPresenterManager().getDateListPresenter();
         presenter.attachView(this);
-        presenter.viewIsReady();
+        presenter.firstInitialPresenter();
     }
 
     public void initializeToolbar() {

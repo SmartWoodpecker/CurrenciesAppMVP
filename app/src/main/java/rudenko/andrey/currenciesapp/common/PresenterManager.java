@@ -8,9 +8,9 @@ public class PresenterManager {
     private static DateListPresenter dateListPresenter;
     private static DateDetailsPresenter dateDetailsPresenter;
 
-    public DateDetailsPresenter getDateDetailsPresenter(String year, String month, String day) {
+    public DateDetailsPresenter getDateDetailsPresenter() {
         if (dateDetailsPresenter == null) {
-            dateDetailsPresenter = new DateDetailsPresenter(year, month, day);
+            dateDetailsPresenter = new DateDetailsPresenter();
         }
         return dateDetailsPresenter;
     }

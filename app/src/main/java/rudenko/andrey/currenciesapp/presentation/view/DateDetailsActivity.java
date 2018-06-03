@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import rudenko.andrey.currenciesapp.CurrenciesApp;
 import rudenko.andrey.currenciesapp.R;
 import rudenko.andrey.currenciesapp.entity.AllValuteEntity;
 import rudenko.andrey.currenciesapp.presentation.presenter.DateDetailsPresenter;
@@ -22,26 +23,41 @@ public class DateDetailsActivity extends AppCompatActivity implements DateDetail
 
     DateDetailsPresenter presenter;
     ProgressBar progressBar;
+    CurrenciesApp app;
+    Boolean isConfigChange = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            isConfigChange = savedInstanceState.getBoolean("changeConfig");
+        }
         setContentView(R.layout.activity_date_details);
+        app = (CurrenciesApp) getApplicationContext();
         initializeToolbar();
         initializeProgressBar();
         initPresenter();
     }
 
-    public void initPresenter(){
-        Intent myIntent =getIntent();
+    public void initPresenter() {
+
+        Intent myIntent = getIntent();
         String month = myIntent.getStringExtra("month");
         String year = myIntent.getStringExtra("year");
         String day = myIntent.getStringExtra("day");
-        presenter = new DateDetailsPresenter(year,month,day);
+        presenter = app.getPresenterManager().getDateDetailsPresenter();
         presenter.attachView(this);
-        presenter.viewIsReady();
+        presenter.initDate(year, month, day);
+        if (!isConfigChange) {
+            presenter.firstInitialPresenter();
+        }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("changeConfig", true);
+    }
 
     public void initializeToolbar() {
         setSupportActionBar(findViewById(R.id.toolbar));
