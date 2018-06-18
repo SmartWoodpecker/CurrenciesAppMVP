@@ -10,6 +10,7 @@ import rudenko.andrey.currenciesapp.entity.ValuteEntity;
  * Created by rudenko.andrey on 26.05.2018.
  */
 
+
 public interface CurrencyApi {
     @GET("archive//{year}//{month}//{day}//daily_json.js")
     Single<AllValuteEntity> getCurrency(@Path("year") String year,
