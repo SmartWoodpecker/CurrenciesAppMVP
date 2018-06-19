@@ -8,7 +8,6 @@ import io.reactivex.schedulers.Schedulers;
 import rudenko.andrey.currenciesapp.CurrenciesApp;
 import rudenko.andrey.currenciesapp.api.CurrencyApi;
 import rudenko.andrey.currenciesapp.api.RetrofitClient;
-import rudenko.andrey.currenciesapp.api.RetrofitClientModule;
 import rudenko.andrey.currenciesapp.entity.AllValuteEntity;
 import rudenko.andrey.currenciesapp.entity.ValuteEntity;
 

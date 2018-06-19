@@ -4,10 +4,10 @@ import android.app.Application;
 
 import dagger.android.support.DaggerAppCompatActivity;
 import dagger.internal.DaggerCollections;
-import rudenko.andrey.currenciesapp.api.RetrofitClientModule;
-import rudenko.andrey.currenciesapp.common.AppComponent;
-import rudenko.andrey.currenciesapp.common.DaggerAppComponent;
 import rudenko.andrey.currenciesapp.common.PresenterManager;
+import rudenko.andrey.currenciesapp.di.components.AppComponent;
+import rudenko.andrey.currenciesapp.di.components.DaggerAppComponent;
+import rudenko.andrey.currenciesapp.di.modules.RetrofitClientModule;
 
 public class CurrenciesApp extends Application {
 

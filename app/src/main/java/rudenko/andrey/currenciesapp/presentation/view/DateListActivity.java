@@ -29,7 +29,6 @@ public class DateListActivity extends AppCompatActivity implements DateListView 
     RecyclerView rv_currency_list;
     CurrencyAdapter adapter;
     CurrenciesApp app;
-    Boolean isConfigChange = false;
     LinearLayoutManager layoutManager;
 
     @Override
@@ -40,6 +39,9 @@ public class DateListActivity extends AppCompatActivity implements DateListView 
         initializeToolbar();
         initializeRecycler();
         initPresenter();
+        if (savedInstanceState == null) {
+            presenter.firstInitialPresenter();
+        }
     }
 
     @Override
@@ -52,7 +54,6 @@ public class DateListActivity extends AppCompatActivity implements DateListView 
     public void initPresenter() {
         presenter = app.getPresenterManager().getDateListPresenter();
         presenter.attachView(this);
-        presenter.firstInitialPresenter();
     }
 
     public void initializeToolbar() {

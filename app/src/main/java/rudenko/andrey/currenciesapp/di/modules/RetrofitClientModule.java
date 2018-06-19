@@ -1,11 +1,10 @@
-package rudenko.andrey.currenciesapp.api;
-
-import android.support.annotation.NonNull;
+package rudenko.andrey.currenciesapp.di.modules;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import rudenko.andrey.currenciesapp.api.RetrofitClient;
 
 @Module
 public class RetrofitClientModule {

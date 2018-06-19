@@ -24,19 +24,19 @@ public class DateDetailsActivity extends AppCompatActivity implements DateDetail
     DateDetailsPresenter presenter;
     ProgressBar progressBar;
     CurrenciesApp app;
-    Boolean isConfigChange = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            isConfigChange = savedInstanceState.getBoolean("changeConfig");
-        }
         setContentView(R.layout.activity_date_details);
         app = (CurrenciesApp) getApplicationContext();
         initializeToolbar();
         initializeProgressBar();
         initPresenter();
+        if (savedInstanceState == null) {
+            presenter.firstInitialPresenter();
+        }
     }
 
     public void initPresenter() {
@@ -48,9 +48,7 @@ public class DateDetailsActivity extends AppCompatActivity implements DateDetail
         presenter = app.getPresenterManager().getDateDetailsPresenter();
         presenter.attachView(this);
         presenter.initDate(year, month, day);
-        if (!isConfigChange) {
-            presenter.firstInitialPresenter();
-        }
+
     }
 
     @Override
